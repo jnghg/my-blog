@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="max-w-3xl mx-auto py-10 px-10">
+        <div className="max-w-3xl mx-auto py-10 px-10 h-screen">
           <div className="flex space-x-5">
             <Link href={"/"} as={"/"}>
               Home
