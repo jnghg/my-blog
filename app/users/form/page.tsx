@@ -1,22 +1,25 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Forms = () => {
   const { register, handleSubmit } = useForm();
-
   const router = useRouter();
 
   /** 등록 */
   const onRegister = async (form: any) => {
-    console.log("watch  : ", form);
-
-    const result = await fetch(`http://localhost:3000/api/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    }).then((res) => res.json());
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URI}/api/users`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      }
+    ).then((res) => {
+      return res.json();
+    });
 
     if (result) {
       router.push("/users");
@@ -27,7 +30,10 @@ const Forms = () => {
     <form className="space-y-2" onSubmit={handleSubmit(onRegister)}>
       <div className="">
         <div className="w-24">이름</div>
-        <input className="form-input" {...register("name")} />
+        <input
+          className="form-input"
+          {...register("name", { required: true })}
+        />
       </div>
       <div>
         <div className="w-24">나이</div>
