@@ -42,6 +42,7 @@ const Table = ({ data }: TableProps) => {
         <Link
           className="border border-gray-600 bg-gray-600 text-white px-3 py-1 rounded-md"
           href={"/users/form"}
+          as={"/users/form"}
         >
           + New
         </Link>

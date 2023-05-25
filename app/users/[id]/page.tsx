@@ -1,3 +1,15 @@
+export const revalidate = 10;
+
+export async function generateStaticParams() {
+  const users = (await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URI}/api/users`
+  ).then((res) => res.json())) as any[];
+
+  return users.map((user) => ({
+    id: user.id.toString(),
+  }));
+}
+
 const Detail = async ({ params }: { params: { id: string } }) => {
   const user = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URI}/api/users/${params.id}`
