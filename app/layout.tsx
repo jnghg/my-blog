@@ -1,6 +1,6 @@
-import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { TabGroup } from "./ui/components/tab-group";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,15 +16,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="max-w-3xl mx-auto py-10 px-10 h-screen">
-          <div className="flex space-x-5">
-            <Link href={"/"} as={"/"}>
-              Home
-            </Link>
-            <Link href={"/users"} as={"/users"}>
-              Users
-            </Link>
+      <body className="bg-black">
+        <div className="py-10 px-10 h-screen">
+          <div className="flex space-x-5 text-white">
+            <TabGroup
+              path=""
+              items={[
+                {
+                  text: "Home",
+                },
+                {
+                  text: "Users",
+                  slug: "users",
+                  segment: "users",
+                },
+              ]}
+            />
           </div>
           <div className="mt-10">{children}</div>
         </div>

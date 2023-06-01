@@ -1,11 +1,10 @@
-import { Table } from "app/components";
+import { getAllUsers } from "@libs/api/users";
+import { Table } from "app/ui/users/table";
 
 export const revalidate = 10;
 
 const UsersPage = async () => {
-  const users = (await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URI}/api/users`
-  ).then((res) => res.json())) as any[];
+  const users = await getAllUsers();
 
   return <Table data={users} />;
 };
