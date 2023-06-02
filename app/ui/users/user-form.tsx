@@ -16,10 +16,9 @@ const UserForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
+        next: { tags: ["user"] },
       }
-    ).then((res) => {
-      return res.json();
-    });
+    ).then((res) => res.json());
 
     if (result) {
       router.push("/users");
@@ -29,18 +28,18 @@ const UserForm = () => {
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onRegister)}>
       <div className="">
-        <div className="w-24">이름</div>
+        <div className="w-24 text-white">이름</div>
         <input
           className="form-input"
           {...register("name", { required: true })}
         />
       </div>
       <div>
-        <div className="w-24">나이</div>
+        <div className="w-24 text-white">나이</div>
         <input className="form-input" {...register("age")} />
       </div>
       <div>
-        <div className="w-24">이메일</div>
+        <div className="w-24 text-white">이메일</div>
         <input className="form-input" {...register("email")} />
       </div>
 
