@@ -30,6 +30,11 @@ export default function RootLayout({
                   slug: "users",
                   segment: "users",
                 },
+                {
+                  text: "Text",
+                  slug: "text",
+                  segment: "text",
+                },
               ]}
             />
           </div>

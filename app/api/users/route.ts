@@ -3,9 +3,6 @@ import { revalidateTag } from "next/cache";
 import { createUser, getAllUsers } from "@libs/api/users";
 
 export async function GET(request: NextRequest) {
-  const tag = request.nextUrl.searchParams.get("user") || "";
-  revalidateTag(tag);
-
   try {
     const result = await getAllUsers();
     if (!result) throw new Error(result);
@@ -15,11 +12,12 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/** 등록 */
 export async function POST(request: NextRequest) {
-  const tag = request.nextUrl.searchParams.get("user") || "";
-  revalidateTag(tag);
-
   try {
+    const tag = request.nextUrl.searchParams.get("tag") || "";
+    revalidateTag(tag);
+
     const json = await request.json();
     const result = await createUser(json);
     if (!result) throw new Error(result);

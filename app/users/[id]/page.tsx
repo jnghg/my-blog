@@ -1,4 +1,5 @@
 import { getAllUsers, getUser } from "@libs/api/users";
+import { notFound } from "next/navigation";
 
 export const dynamicParams = true;
 export const revalidate = 10;
@@ -13,6 +14,10 @@ export async function generateStaticParams() {
 
 const Detail = async ({ params }: { params: { id: string } }) => {
   const user = await getUser(params.id);
+
+  if (!user) {
+    notFound();
+  }
 
   return (
     <div className="space-y-3 rounded-2xl bg-gray-900/80 p-4 mt-5 text-white">

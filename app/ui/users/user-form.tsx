@@ -10,15 +10,18 @@ const UserForm = () => {
 
   /** 등록 */
   const onRegister = async (form: any) => {
-    const result = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URI}/api/users`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-        next: { tags: ["user"] },
-      }
-    ).then((res) => res.json());
+    const result = await fetch(`/api/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+      next: {
+        tags: ["tag"],
+      },
+    }).then((res) => res.json());
+
+    await fetch(
+      "http://localhost:3000/api/revalidate?path=/users&secret=HGJANG_TOKEN"
+    );
 
     if (result) {
       router.push("/users");
