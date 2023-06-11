@@ -1,7 +1,7 @@
 import { getAllUsers } from "@libs/api/users";
 import { Table } from "app/ui/users/table";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 const UsersPage = async () => {
   const users = await getAllUsers();

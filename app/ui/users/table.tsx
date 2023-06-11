@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FloatButton } from "../components/float-button";
+import { useEffect } from "react";
 
 export interface TableProps {
   data: any[];
@@ -15,6 +16,10 @@ export const Table = ({ data }: TableProps) => {
     router.push(`/users/${id}`);
   };
 
+  useEffect(() => {
+    router.refresh();
+  }, []);
+
   return (
     <div className="py-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-3 ">
@@ -24,7 +29,7 @@ export const Table = ({ data }: TableProps) => {
             className="space-y-3 rounded-2xl bg-gray-900/80 p-4 mb-3 text-white hover:cursor-pointer hover:p-3 duration-300"
             onClick={() => onClickRow(user.id)}
           >
-            <div className="w-14 rounded-3xl px-2 bg-cyan-500">
+            <div className="w-16 rounded-3xl px-2 bg-cyan-500">
               No.{user.id}
             </div>
             <div className="border border-gray-400 p-2 rounded-2xl space-y-2">

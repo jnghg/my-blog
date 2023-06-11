@@ -14,16 +14,13 @@ const UserForm = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
-      next: {
-        tags: ["tag"],
-      },
     }).then((res) => res.json());
 
-    await fetch(
-      "http://localhost:3000/api/revalidate?path=/users&secret=HGJANG_TOKEN"
-    );
+    const { revalidated } = await fetch(
+      `http://localhost:3000/api/revalidate?path=/users&secret=HGJANG_TOKEN`
+    ).then((res) => res.json());
 
-    if (result) {
+    if (result && revalidated) {
       router.push("/users");
     }
   };
