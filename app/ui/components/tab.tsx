@@ -21,6 +21,7 @@ export const Tab = ({ path, item }: { path: string; item: Item }) => {
           !isActive,
         "bg-blue-500 text-white": isActive,
       })}
+      prefetch={true}
     >
       {item.text}
     </Link>

@@ -12,7 +12,7 @@ export default function UsersLayout({
           path="/users"
           items={[
             {
-              text: "목록 ISR",
+              text: "목록",
               slug: "",
               segment: "users",
             },

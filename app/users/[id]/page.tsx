@@ -2,7 +2,7 @@ import { getAllUsers, getUser } from "@libs/api/users";
 import { notFound } from "next/navigation";
 
 export const dynamicParams = true;
-export const revalidate = 10;
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const users = await getAllUsers();

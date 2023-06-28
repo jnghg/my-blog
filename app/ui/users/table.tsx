@@ -1,33 +1,20 @@
-"use client";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { FloatButton } from "../components/float-button";
-import { useEffect } from "react";
+import { Users } from "@prisma/client";
 
-export interface TableProps {
-  data: any[];
+export interface TableProps<T> {
+  data: T[];
 }
 
-export const Table = ({ data }: TableProps) => {
-  const router = useRouter();
-
-  const onClickRow = (id: number) => {
-    router.push(`/users/${id}`);
-  };
-
-  useEffect(() => {
-    router.refresh();
-  }, []);
-
+export const Table = ({ data }: TableProps<Users>) => {
   return (
     <div className="py-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-3 ">
-        {data.map((user) => (
-          <div
+        {data?.map((user) => (
+          <Link
+            href={`/users/${user.id}`}
             key={user.id}
             className="space-y-3 rounded-2xl bg-gray-900/80 p-4 mb-3 text-white hover:cursor-pointer hover:p-3 duration-300"
-            onClick={() => onClickRow(user.id)}
           >
             <div className="w-16 rounded-3xl px-2 bg-cyan-500">
               No.{user.id}
@@ -48,7 +35,7 @@ export const Table = ({ data }: TableProps) => {
                 <div>{user.email}</div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
