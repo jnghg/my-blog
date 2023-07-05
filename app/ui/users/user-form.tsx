@@ -1,15 +1,23 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "../components/button";
+import { useState, useTransition } from "react";
 
 const UserForm = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+  const [isFetching, setIsFetching] = useState(false);
+
+  const isMutating = isFetching || isPending;
 
   /** 등록 */
   const onRegister = async (form: any) => {
+    setIsFetching(true);
+
     const result = await fetch(`/api/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -20,8 +28,16 @@ const UserForm = () => {
       `http://localhost:3000/api/revalidate?path=/users&secret=HGJANG_TOKEN`
     ).then((res) => res.json());
 
+    setIsFetching(false);
+
     if (result && revalidated) {
-      router.push("/users");
+      startTransition(() => {
+        if (pathname === "/users/form") {
+          router.push(`/users/${result.id}`);
+        } else {
+          router.refresh();
+        }
+      });
     }
   };
 
@@ -44,7 +60,7 @@ const UserForm = () => {
       </div>
 
       <div className="pt-10">
-        <Button text="등록" />
+        <Button text={isMutating ? "Loading.." : "등록"} />
       </div>
     </form>
   );

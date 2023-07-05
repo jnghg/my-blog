@@ -13,8 +13,6 @@ export default function UsersLayout({
           items={[
             {
               text: "목록",
-              slug: "",
-              segment: "users",
             },
             {
               text: "등록",
