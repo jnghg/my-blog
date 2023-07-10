@@ -42,7 +42,7 @@ const UserForm = () => {
   };
 
   return (
-    <form className="space-y-2" onSubmit={handleSubmit(onRegister)}>
+    <form className="space-y-2 pt-7" onSubmit={handleSubmit(onRegister)}>
       <div className="">
         <div className="w-24 text-white">이름</div>
         <input
@@ -59,8 +59,8 @@ const UserForm = () => {
         <input className="form-input" {...register("email")} />
       </div>
 
-      <div className="pt-10">
-        <Button text={isMutating ? "Loading.." : "등록"} />
+      <div className="pt-5">
+        <Button text={"등록"} isMutating={isMutating} />
       </div>
     </form>
   );
