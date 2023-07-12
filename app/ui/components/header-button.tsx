@@ -8,14 +8,14 @@ export const HeaderButton = ({ serverSession }: { serverSession: any }) => {
     <div className="flex items-center text-sm space-x-2">
       {serverSession ? (
         <button
-          className="border border-blue-600 hover:bg-blue-600 duration-300 text-white px-3 py-1 rounded-lg"
+          className="border border-blue-600 hover:bg-blue-600 hover:text-white duration-300 px-3 py-1 rounded-lg"
           onClick={() => signOut()}
         >
           LogOut
         </button>
       ) : (
         <button
-          className="border border-blue-600 hover:bg-blue-600 duration-300 text-white px-3 py-1 rounded-lg"
+          className="border border-blue-600 hover:bg-blue-600 hover:text-white duration-300 px-3 py-1 rounded-lg"
           onClick={() =>
             // signIn("google", { callbackUrl: "http://localhost:3000/users" })
             signIn()

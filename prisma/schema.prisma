@@ -8,11 +8,11 @@ datasource db {
   relationMode = "prisma"
 }
 
+// 사용자
 model Users {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String   @db.VarChar(100)
-  age       Int?
   email     String?  @db.VarChar(100)
 }

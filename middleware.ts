@@ -11,9 +11,9 @@ export async function middleware(request: NextRequest) {
 
   const pathName = request.nextUrl.password;
 
-  if (!token && pathName !== "/") {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // if (!token && pathName !== "/") {
+  //   return NextResponse.redirect(new URL("/", request.url));
+  // }
 }
 
 // See "Matching Paths" below to learn more

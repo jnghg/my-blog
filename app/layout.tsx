@@ -19,10 +19,10 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black">
+      <body className="bg-gray-950 text-white">
         <AuthSession>
           <div className="py-10 px-10 h-screen">
-            <div className="flex  justify-between text-white">
+            <div className="flex justify-between">
               <TabGroup
                 path=""
                 items={[

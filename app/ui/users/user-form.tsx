@@ -51,10 +51,6 @@ const UserForm = () => {
         />
       </div>
       <div>
-        <div className="w-24 text-white">나이</div>
-        <input className="form-input" {...register("age")} />
-      </div>
-      <div>
         <div className="w-24 text-white">이메일</div>
         <input className="form-input" {...register("email")} />
       </div>
