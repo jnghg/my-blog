@@ -5,6 +5,7 @@ export const revalidate = 86400;
 
 const UsersPage = async () => {
   const users = await getAllUsers();
+
   return <Table data={users} />;
 };
 

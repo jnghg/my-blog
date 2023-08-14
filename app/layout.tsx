@@ -4,6 +4,8 @@ import AuthSession from "./ui/components/authSession";
 
 import Avatar from "./ui/components/avatar";
 import { TabGroup } from "./ui/components/tab-group";
+import { ApolloProvider } from "@apollo/client";
+import ApolloClient from "./ui/components/apolloClient";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,25 +23,27 @@ export default async function RootLayout({
     <html lang="en">
       <body className="bg-gray-950 text-white">
         <AuthSession>
-          <div className="py-10 px-10 h-screen">
-            <div className="flex justify-between">
-              <TabGroup
-                path=""
-                items={[
-                  {
-                    text: "Home",
-                  },
-                  {
-                    text: "Users",
-                    slug: "users",
-                    segment: "users",
-                  },
-                ]}
-              />
-              <Avatar />
+          <ApolloClient>
+            <div className="py-10 px-10 h-screen">
+              <div className="flex justify-between">
+                <TabGroup
+                  path=""
+                  items={[
+                    {
+                      text: "Home",
+                    },
+                    {
+                      text: "Users",
+                      slug: "users",
+                      segment: "users",
+                    },
+                  ]}
+                />
+                <Avatar />
+              </div>
+              <main className="mt-10">{children}</main>
             </div>
-            <main className="mt-10">{children}</main>
-          </div>
+          </ApolloClient>
         </AuthSession>
       </body>
     </html>
